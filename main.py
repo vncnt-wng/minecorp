@@ -1,5 +1,5 @@
 import pygame
-#import ship
+from ship import Ship
 
 black = (0,0,0)
 white = (255,255,255)
@@ -13,39 +13,11 @@ height = 1200
 gameDisplay = pygame.display.set_mode((width,height))
 pygame.display.set_caption('MineCorp')
 
-
-class Ship:
-
-  def __init__(self, x, y, gameDisplay):
-    self.x = x;
-    self.y = y;
-    self.velx = 0;
-    self.vely = 0;
-    self.display = gameDisplay
-    self.accel_rate = 0.5
-
-  def accel(self, dx, dy):
-    self.velx += self.accel_rate * dx
-    self.vely += self.accel_rate * dy
-
-  def move(self):
-    self.x += self.velx
-    self.y += self.vely
-    self.decellerate()
-
-  def decellerate(self):
-    self.velx = self.velx * 0.99
-    self.vely = self.vely * 0.99
-
-  def draw(self):
-    pygame.draw.circle(gameDisplay, white, (int(self.x), int(self.y)), 20)
-
-
 clock = pygame.time.Clock()
 
 crashed = False
 
-ship = Ship(width/2, height/2, gameDisplay)
+ship = Ship(pygame.math.Vector2(width/2, height/2), gameDisplay)
 
 
 def key_down_action(key):
