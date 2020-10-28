@@ -1,6 +1,7 @@
 import pygame
 from ship import Ship
 from laser import Laser
+from asteroid import Asteroid
 
 black = (0,0,0)
 white = (255,255,255)
@@ -20,12 +21,15 @@ crashed = False
 
 ship = Ship(pygame.math.Vector2(width/2, height/2), gameDisplay)
 lasers = []
+asteroids = []
+
+asteroids.append(Asteroid(pygame.math.Vector2(width/5, height/3), gameDisplay, 40))
+asteroids.append(Asteroid(pygame.math.Vector2(width * 3/5, height * 3/4), gameDisplay, 30))
 
 def key_down_action(key):
   if key == pygame.K_s:
     laser = Laser(ship)
     lasers.append(laser)
-    print(lasers)
   move_ship(key)
 
 def move_ship(key):
@@ -44,6 +48,9 @@ def draw_all():
 
   for laser in lasers:
     laser.draw()
+
+  for asteroid in asteroids:
+    asteroid.draw()
 
 def kill_particles():
   for laser in lasers:
