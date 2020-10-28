@@ -18,7 +18,7 @@ class Laser:
     pygame.draw.line(self.ship.display,
                      (255, 255, 255),
                      self.pos,
-                     self.pos + self.length * self.direction,
+                     self.pos - self.length * self.direction,
                      2)
 
   #TODO abstract this kind of behaviour into a *particle* class?

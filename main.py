@@ -52,6 +52,16 @@ def draw_all():
   for asteroid in asteroids:
     asteroid.draw()
 
+#TODO make this not n^2?
+def check_collisions():
+  for asteroid in asteroids:
+    for laser in lasers:
+      if asteroid.hitbox.collidepoint(laser.pos):
+        if (asteroid.hit(laser.direction)):
+          asteroids.remove(asteroid)
+        lasers.remove(laser)
+        break
+
 def kill_particles():
   for laser in lasers:
     if laser.dying():
@@ -68,6 +78,8 @@ while not crashed:
   ship.move()
   gameDisplay.fill(black)
   
+  check_collisions()
+
   draw_all()
   
   kill_particles()
